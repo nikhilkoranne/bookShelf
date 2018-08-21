@@ -33,7 +33,7 @@ angular.module('bookShelf')
       function paginate(pageNumber) {
         vm.pageNumber = pageNumber;
         vm.pages = [];
-        for (let i = 0; i < (vm.totalRecords / vm.pageSize); i++) {
+        for (var i = 0; i < (vm.totalRecords / vm.pageSize); i++) {
           vm.pages.push(i + 1);
         }
         vm.books = BookService.paginate(vm.bookList, pageNumber, vm.pageSize);
