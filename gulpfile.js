@@ -9,7 +9,7 @@ var pkg = require('./package.json');
 var browserSync = require('browser-sync').create();
 
 gulp.task('js:clean', function () {
-  return gulp.src('/dist', { read: false })
+  return gulp.src('dist', { read: false })
     .pipe(cleanJS());
 });
 
@@ -73,7 +73,7 @@ gulp.task('js:minify', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('js:copy', function () {
+gulp.task('js:copy', ['js:clean'], function () {
   return gulp.src([
     './src/**/*.js',
   ])
@@ -86,7 +86,7 @@ gulp.task('js:copy', function () {
 
 gulp.task('js', ['js:minify']);
 
-gulp.task('js:serve', ['js:clean', 'js:copy']);
+gulp.task('js:serve', ['js:copy']);
 
 gulp.task('default', ['css', 'js', 'vendor']);
 
