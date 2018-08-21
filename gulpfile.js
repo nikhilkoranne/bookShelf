@@ -84,7 +84,7 @@ gulp.task('js:copy', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('js', ['js:clean', 'js:minify']);
+gulp.task('js', ['js:minify']);
 
 gulp.task('js:serve', ['js:clean', 'js:copy']);
 
