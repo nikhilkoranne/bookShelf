@@ -1,0 +1,39 @@
+<section id="book">
+  <div class="container row">
+    <div class="col-lg-10 mx-auto">
+      <form name="loginForm" id="loginForm" novalidate="novalidate">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>User Name</label>
+            <input ng-model="vm.loginModel.username" class="form-control" id="username" name="username" type="text" placeholder="Username"
+              required>
+            <p class="help-block text-danger">
+              <div ng-messages="loginForm.username.$error" ng-if="vm.submitted || loginForm.username.$touched || loginForm.username.$dirty">
+                <div class="text-danger" ng-message="required">Please enter username.</div>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Password</label>
+            <input ng-model="vm.loginModel.password" class="form-control" id="password" name="password" type="password" placeholder="Password"
+              required>
+            <p class="help-block text-danger">
+              <div ng-messages="loginForm.password.$error" ng-if="vm.submitted || loginForm.password.$touched || loginForm.password.$dirty">
+                <div class="text-danger" ng-message="required">Please enter password.</div>
+              </div>
+            </p>
+            <p class="help-block text-danger" ng-if="vm.inValidLogin">
+              <div ng-if="vm.inValidLogin" class="text-danger">Invalid username or password.</div>
+            </p>
+          </div>
+        </div>
+        <div id="success"></div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="button" ng-click="vm.login(loginForm)">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

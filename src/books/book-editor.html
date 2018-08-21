@@ -1,0 +1,75 @@
+<div id="book">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <form name="bookForm" id="bookForm" novalidate="novalidate">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Book Title</label>
+            <input ng-model="vm.book.Title" class="form-control" id="title" name="title" type="text" placeholder="Book Title" required>
+            <p class="help-block text-danger">
+              <div ng-messages="bookForm.title.$error" ng-if="vm.submitted || bookForm.title.$touched || bookForm.title.$dirty">
+                <div class="text-danger" ng-message="required">Please enter book title.</div>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Description</label>
+            <textarea ng-model="vm.book.Description" class="form-control" id="description" name="description" type="text" placeholder="Description"
+              required></textarea>
+            <p class="help-block text-danger">
+              <div ng-messages="bookForm.description.$error" ng-if="vm.submitted || bookForm.description.$touched || bookForm.description.$dirty">
+                <div class="text-danger" ng-message="required">Please enter book description.</div>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Publish Date</label>
+            <input type="date" ng-model="vm.book.PublishDate" max="{{vm.maxDate}}" class="form-control" id="publishDate" name="publishDate" placeholder="Publish Date"
+              ng-disabled="vm.book.ID"
+              required>
+            <p class="help-block text-danger">
+              <div ng-messages="bookForm.publishDate.$error" ng-if="vm.submitted || bookForm.publishDate.$touched || bookForm.publishDate.$dirty">
+                <div class="text-danger" ng-message="required">Please enter book Publish Date.</div>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Excerpt</label>
+            <textarea ng-model="vm.book.Excerpt" class="form-control" id="excerpt" name="excerpt" type="text" placeholder="Excerpt">
+            </textarea>
+            <p class="help-block text-danger">
+              <div ng-messages="bookForm.excerpt.$error" ng-if="vm.submitted || bookForm.excerpt.$touched || bookForm.excerpt.$dirty">
+                <div class="text-danger" ng-message="required">Please enter book excerpt.</div>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <label>Page Count</label>
+            <input ng-model="vm.book.PageCount" ng-pattern="/^[0-9]*$/" class="form-control" id="pageCount" name="pageCount" type="text"
+              placeholder="Page Count" required>
+            <p class="help-block text-danger">
+              <div ng-messages="bookForm.pageCount.$error" ng-if="vm.submitted || bookForm.pageCount.$touched || bookForm.pageCount.$dirty">
+                <div class="text-danger" ng-message="required">Please enter book page count.</div>
+                <div class="text-danger" ng-message="pattern">Please enter only numbers.</div>
+              </div>
+            </p>
+          </div>
+        </div>
+        <br>
+        <div id="success"></div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="button" ng-click="vm.save(bookForm)">{{vm.book.ID ? 'Update': 'Add'}}</button>
+          <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
