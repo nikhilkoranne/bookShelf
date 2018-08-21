@@ -1,0 +1,118 @@
+// Styling for the book section
+.floating-label-form-group {
+  position: relative;
+  border-bottom: 1px solid $gray-200;
+  input,
+  textarea {
+    font-size: 1.5em;
+    position: relative;
+    z-index: 1;
+    padding-right: 0;
+    padding-left: 0;
+    resize: none;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none !important;
+  }
+  label {
+    font-size: 0.85em;
+    line-height: 1.764705882em;
+    position: relative;
+    z-index: 0;
+    top: 2em;
+    display: block;
+    margin: 0;
+    -webkit-transition: top 0.3s ease, opacity 0.3s ease;
+    -moz-transition: top 0.3s ease, opacity 0.3s ease;
+    -ms-transition: top 0.3s ease, opacity 0.3s ease;
+    transition: top 0.3s ease, opacity 0.3s ease;
+    vertical-align: middle;
+    vertical-align: baseline;
+    opacity: 0;
+  }
+  &:not(:first-child) {
+    padding-left: 14px;
+    border-left: 1px solid $gray-200;
+  }
+}
+
+.floating-label-form-group-with-value {
+  label {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.floating-label-form-group-with-focus {
+  label {
+    color: $primary;
+  }
+}
+form .row:first-child .floating-label-form-group {
+  border-top: 1px solid $gray-200;
+}
+.book-list {
+  margin-top: 3em;
+  max-height: 29.5em;
+  margin-bottom: 1.2em;
+}
+.hand-cursor {
+  cursor: pointer;
+}
+.book-page {
+  min-height: 100%;
+}
+.book-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.label-status {
+  padding-right: 0.5em;
+}
+.status-checkbox {
+  position: relative;
+  vertical-align: middle;
+}
+.loader {
+  background-color: black;
+  opacity: 0.5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.loader-icon {
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  background-color: white;
+  position: absolute;
+  font-size: 20px;
+}
+.status-label {
+  margin-top: 1em;
+  margin-right: 1em;
+  color: #6c757d;
+  font-size: 1.5em;
+}
+.page-number {
+  padding: 1em;
+  display: inline;
+}
+.pager {
+  display: inline;
+  padding: 1em
+}
+.active-page {
+  color: #0485fb;
+  font-size: 1.5em;
+  border: 1px solid #0485fb;
+  padding: 0.5em 0.5em 0.5em 0.8em;
+}

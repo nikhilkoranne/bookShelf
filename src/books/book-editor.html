@@ -1,0 +1,83 @@
+<section id="book">
+  <div class="container">
+    <h3 class="text-center text-uppercase text-secondary mb-0 mt-3">Book Editor</h3>
+    <hr class="star-dark mb-3">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <form name="bookForm" id="bookForm" novalidate="novalidate">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <label>First Name</label>
+              <input ng-model="vm.book.firstName" class="form-control" id="firstName" name="firstName" type="text" placeholder="First Name"
+                required>
+              <p class="help-block text-danger">
+                <div ng-messages="bookForm.firstName.$error" ng-if="vm.submitted || bookForm.firstName.$touched || bookForm.firstName.$dirty">
+                  <div class="text-danger" ng-message="required">Please enter your first name.</div>
+                </div>
+              </p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <label>Last Name</label>
+              <input ng-model="vm.book.lastName" class="form-control" id="lastName" name="lastName" type="text" placeholder="Last Name"
+                required>
+              <p class="help-block text-danger">
+                <div ng-messages="bookForm.lastName.$error" ng-if="vm.submitted || bookForm.lastName.$touched || bookForm.lastName.$dirty">
+                  <div class="text-danger" ng-message="required">Please enter your last name.</div>
+                </div>
+              </p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <label>Email Address</label>
+              <input ng-model="vm.book.email" class="form-control" id="email" name="email" type="email" placeholder="Email Address"
+                required ng-pattern="vm.emailPattern">
+              <p class="help-block text-danger">
+                <div ng-messages="bookForm.email.$error" ng-if="vm.submitted || bookForm.email.$touched || bookForm.email.$dirty">
+                  <div class="text-danger" ng-message="required">Please enter your email address.</div>
+                  <div class="text-danger" ng-message="pattern">Please enter valid email address.</div>
+                </div>
+              </p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-2 pb-2">
+              <label>Phone Number</label>
+              <input ng-model="vm.book.phone" class="form-control" id="phone" name="phone" type="text" placeholder="Phone Number" required
+                ng-minlength="8" ng-maxlength="10" maxlength="10" ng-pattern="vm.phoneNumberPattern">
+              <p class="help-block text-danger">
+                <div ng-messages="bookForm.phone.$error" ng-if="vm.submitted || bookForm.phone.$touched || bookForm.phone.$dirty">
+                  <div class="text-danger" ng-message="required">Please enter your phone number.</div>
+                  <div class="text-danger" ng-message="pattern">Please enter valid phone.</div>
+                  <div class="text-danger" ng-message="maxlength">Maximum length of phone number can be 10.</div>
+                  <div class="text-danger" ng-message="minlength">Minimum length of phone number can be 8.</div>
+                </div>
+              </p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group controls mb-0 pb-2">
+              <span class="status-label">
+                Phone Status:
+              </span>
+              <label class="label-status" for="status">
+                <input class="status-checkbox" type="checkbox" id="status" name="status" ng-model="vm.book.status"> {{vm.book.status ? 'Active': 'Inactive'}} </label>
+              <p class="help-block text-danger">
+                <div ng-messages="bookForm.status.$error" ng-if="vm.submitted || bookForm.status.$touched || bookForm.status.$dirty">
+                  <div class="text-danger" ng-message="required">Please select your phone status.</div>
+                </div>
+              </p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="button" ng-click="vm.sync(vm.book, bookForm)" class="btn btn-primary btn-xl" id="save">{{vm.book.id ? 'Update': 'Add'}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

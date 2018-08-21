@@ -1,0 +1,39 @@
+<section id="book">
+  <div class="container">
+    <div class="form-group mt-2 pull-right">
+      <button type="submit" ng-click="vm.addNew()" class="btn btn-default btn-sm" id="add">
+        <i title="Add" class="fa fa-plus hand-cursor"></i>
+      </button>
+    </div>
+    <div class="table-responsive book-list">
+      <table class="table table-hover">
+        <thead>
+          <th>#</th>
+          <th>Title</th>
+          <th>Publish Date</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="book in vm.books" ng-click="vm.editBook(book)">
+            <td>{{vm.getSerialNumber($index)}}</td>
+            <td>{{book.Title}}</td>
+            <td>{{book.PublishDate | date: 'dd-MMM-yyyy'}}</td>
+            <td>
+              <i title="Edit" ng-click="vm.editBook($event, book)" class="fa fa-edit fa-2x hand-cursor"></i>
+              <i title="Delete" ng-click="vm.removeBook($event, book)" class="fa fa-times fa-2x hand-cursor"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <select  ng-if="vm.pages.length" ng-change="vm.changePageSize(vm.pageSize)"
+      ng-model="vm.pageSize" ng-options="option.id as option.name for option in vm.pageSizeOptions"></select>
+
+    <ul class="pager">
+      <ol class="page-number hand-cursor" ng-class="{'active-page': vm.pageNumber === pageNumber}" ng-repeat="pageNumber in vm.pages"
+        ng-click="vm.paginate(pageNumber)">
+        {{pageNumber}}
+      </ol>
+    </ul>
+  </div>
+</section>
