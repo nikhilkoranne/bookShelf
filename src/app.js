@@ -1,13 +1,13 @@
-angular.module('bookShelf', ['ngRoute', 'ngMessages'])
+angular.module('bookShelf', ['ngRoute', 'ngMessages', 'ui.bootstrap'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/books', {
       templateUrl: 'src/books/book-list.html',
       controller: 'BookListController',
       controllerAs: 'vm'
     })
-      .when('/bookEditor', {
-        templateUrl: 'src/books/book-editor.html',
-        controller: 'BookEditorController',
+      .when('/login', {
+        templateUrl: 'src/login/login.html',
+        controller: 'LoginController',
         controllerAs: 'vm'
       })
       .otherwise({
@@ -18,4 +18,9 @@ angular.module('bookShelf', ['ngRoute', 'ngMessages'])
     '$httpProvider', function ($httpProvider) {
       $httpProvider.interceptors.push('LoadingIndicatorInterceptor');
     }
-  ]);
+  ])
+  .run(['AuthService', '$location', function (AuthService, $location) {
+    if (!AuthService.isLoggedIn()) {
+      $location.path('/login');
+    }
+  }]);

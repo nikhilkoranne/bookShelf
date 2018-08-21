@@ -15,10 +15,12 @@
   <script src="vendor/angular/angular.min.js"></script>
   <script src="vendor/angular/angular-route.min.js"></script>
   <script src="vendor/angular/angular-messages.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.0.js"></script>
 </head>
 
 <body id="page-top" ng-app="bookShelf">
-  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+  <nav ng-controller="LoginController as vm" class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#">Books</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse"
@@ -32,6 +34,11 @@
               About
             </a>
           </li>
+          <li class="nav-item mx-0 mx-lg-1">
+              <a ng-if="vm.isLoggedIn()" ng-click="vm.logout()" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
+                Logout
+              </a>
+            </li>
         </ul>
       </div>
     </div>
@@ -49,10 +56,13 @@
   <script src="dist/app.min.js"></script>
   <script src="dist/common/loader.interceptor.min.js"></script>
   <script src="dist/books/book-list.controller.min.js"></script>
-  <script src="dist/books/book-editor.controller.min.js"></script>
+  <script src="dist/login/login.controller.min.js"></script>
   <script src="dist/services/book.service.min.js"></script>
+  <script src="dist/services/auth.service.min.js"></script>
   <script src="dist/common/loader.service.min.js"></script>
   <script src="dist/common/loader.directive.min.js"></script>
+  <script src="dist/modals/deleteModal.min.js"></script>
+  <script src="dist/modals/addEditModal.min.js"></script>
 </body>
 
 </html>

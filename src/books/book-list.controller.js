@@ -1,6 +1,6 @@
 angular.module('bookShelf')
-  .controller('BookListController', ['$scope', 'BookService', '$location',
-    function ($scope, BookService, $location) {
+  .controller('BookListController', ['$scope', 'BookService', '$location', '$uibModal', '$log',
+    function ($scope, BookService, $location, $uibModal, $log) {
 
       var vm = this;
       vm.pages = [];
@@ -47,20 +47,56 @@ angular.module('bookShelf')
         });
       }
 
-      function editBook(book) {
-        BookService.setBook(book);
-        $location.path('bookEditor');
+      function addEditModal(book) {
+        var modalInstance = $uibModal.open({
+          animation: false,
+          templateUrl: 'addEditModal.html',
+          controller: 'AddEditModalInstanceCtrl',
+          controllerAs: 'vm',
+          backdropClass: 'backdrop-delete',
+          resolve: {
+            book: function () {
+              return book;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (book) {
+          BookService.syncBook(book).then(function (data) {
+            getBookList();
+          });
+        }, function () {
+          $log.info('Modal dismissed');
+        });
+      }
+
+      function editBook(e, book) {
+        e.stopPropagation();
+        addEditModal(book);
       }
 
       function addNew() {
-        BookService.setBook(null);
-        $location.path('bookEditor');
+        addEditModal();
       }
 
       function removeBook(e, book) {
         e.stopPropagation();
-        BookService.removeBook(book).then(function (data) {
-          getBookList();
+
+        var modalInstance = $uibModal.open({
+          animation: false,
+          templateUrl: 'deleteModal.html',
+          controller: 'DeleteModalInstanceCtrl',
+          controllerAs: 'vm',
+          backdropClass: 'backdrop-delete',
+          size: 'sm'
+        });
+
+        modalInstance.result.then(function () {
+          BookService.removeBook(book).then(function (data) {
+            getBookList();
+          });
+        }, function () {
+          $log.info('Modal dismissed');
         });
       }
 

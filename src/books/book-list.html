@@ -14,7 +14,7 @@
           <th>Actions</th>
         </thead>
         <tbody>
-          <tr ng-repeat="book in vm.books" ng-click="vm.editBook(book)">
+          <tr ng-repeat="book in vm.books">
             <td>{{vm.getSerialNumber($index)}}</td>
             <td>{{book.Title}}</td>
             <td>{{book.PublishDate | date: 'dd-MMM-yyyy'}}</td>
@@ -37,3 +37,25 @@
     </ul>
   </div>
 </section>
+<script type="text/ng-template" id="deleteModal.html">
+  <div class="modal-header">
+      <h3 class="modal-title">Delete Book?</h3>
+  </div>
+  <div class="modal-body">
+      Are you sure you want to delete the book?
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="vm.ok()">Yes</button>
+      <button class="btn btn-warning" type="button" ng-click="vm.cancel()">No</button>
+  </div>
+</script>
+
+<script type="text/ng-template" id="addEditModal.html">
+  <div class="modal-header">
+      <h3 class="modal-title">{{(vm.book.ID ? 'Edit' : 'Add') + ' Book'}}</h3>
+  </div>
+  <div class="modal-body">
+      <div ng-include="'/src/books/book-editor.html'"></div>
+  </div>
+  
+</script>

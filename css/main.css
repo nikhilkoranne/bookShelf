@@ -404,6 +404,10 @@ form .row:first-child .floating-label-form-group {
   padding: 0.5em 0.5em 0.5em 0.8em;
 }
 
+.backdrop-delete {
+  opacity: 0.5 !important;
+}
+
 .footer {
   padding-top: 5rem;
   padding-bottom: 5rem;

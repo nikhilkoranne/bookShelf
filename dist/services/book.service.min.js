@@ -11,8 +11,6 @@ angular.module('bookShelf')
       function getBookList() {
         return $http.get('http://fakerestapi.azurewebsites.net/api/Books').then(function (response) {
           return response.data;
-        }).catch(function (error) {
-
         });
       }
 
@@ -25,17 +23,19 @@ angular.module('bookShelf')
       }
 
       function removeBook(book) {
-        var deferred = $q.defer();
-
-        deferred.resolve({});
-        return deferred.promise;
+        return $http.delete('http://fakerestapi.azurewebsites.net/api/Books/' + book.ID).then(function (response) {
+          return response.data;
+        });
       }
 
       function syncBook(book) {
-        var deferred = $q.defer();
-
-        deferred.resolve([]);
-        return deferred.promise;
+        return $http({
+          url: 'http://fakerestapi.azurewebsites.net/api/Books/' + (book.ID || ''),
+          method: book.ID ? 'PUT' : 'POST',
+          data: book
+        }).then(function (response) {
+          return response.data;
+        });
       }
 
       return {
